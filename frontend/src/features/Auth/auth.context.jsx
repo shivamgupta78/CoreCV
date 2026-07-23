@@ -24,7 +24,7 @@ export const AuthProvider = ({children}) => {
                setuser(data?.user || data);
             } catch (err) {
                 console.error("Session verification failed:", err.message);
-                localStorage.removeItem('token'); // Invalid / expired token cleanup
+                localStorage.removeItem('token'); 
                 setuser(null);
             } finally {
                 setloading(false);

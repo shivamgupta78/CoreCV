@@ -2,6 +2,8 @@ import "../../Auth/form.scss";
 import { useState } from "react";
 import {useNavigate, Link } from 'react-router';
 import { useAuth } from "../hooks/useAuth.js";
+import FullLoader from '../components/FullLoader.jsx';
+
 
 const Login = () => {
     const navigate = useNavigate();
@@ -14,18 +16,15 @@ const Login = () => {
         e.preventDefault();
         try { 
             await handleLogin({email,password});
-            navigate("/");
+            navigate("/dashbaord");
         } catch(err){
             console.error(err);
         }
     }
-
-    if(loading) {
-         return (
-            <>
-            <main><h1>Loading....</h1></main></>
-         )
-    }
+    if (loading) {
+  return <FullLoader />;
+}
+   
 
     return (
         <>

@@ -27,7 +27,7 @@ $font-stack:     system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Robot
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     padding: 3rem 1.5rem;
     gap: 2rem;
 }
@@ -313,13 +313,11 @@ $font-stack:     system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Robot
 }
 
 // ── Generate Button ───────────────────────────────────────────────────────────
-// ── Generate Button ───────────────────────────────────────────────────────────
 .generate-btn {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     padding: 0.75rem 1.5rem;
-    // 🚨 Chnaged: darken($accent, 10%) ko color.adjust se replace kiya hai
     background: linear-gradient(135deg, $accent 0%, color.adjust($accent, $lightness: -10%) 100%);
     color: #fff;
     font-size: 0.9rem;
@@ -392,7 +390,6 @@ $font-stack:     system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Robot
 }
 
 // ── Fullscreen Loading Overlay ──────────────────────────────────────────────
-// 👈 NAYA ADD KARO: Jab report generate ho rahi ho tab dikhane ke liye
 .loading-screen {
     position: fixed;
     top: 0;
@@ -432,4 +429,57 @@ $font-stack:     system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Robot
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+
+@media (max-width: 768px) {
+  .home-page {
+    padding: 1.5rem 1rem;
+    gap: 1.5rem;
+  }
+
+  .page-header {
+    h1 {
+      font-size: 1.75rem;
+    }
+    p {
+      font-size: 0.85rem;
+    }
+  }
+
+  .interview-card {
+    &__body {
+      flex-direction: column; 
+      min-height: auto;
+    }
+
+    &__footer {
+      flex-direction: column;
+      gap: 1rem;
+      align-items: stretch;
+
+      .generate-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+
+  .panel-divider {
+    width: 100%;
+    height: 1px; 
+  }
+
+  .panel {
+    padding: 1.2rem;
+
+    &--left .char-counter {
+      bottom: 1.8rem;
+      right: 1.5rem;
+    }
+  }
+
+  .recent-reports .reports-list {
+    flex-direction: column; 
+}
 }

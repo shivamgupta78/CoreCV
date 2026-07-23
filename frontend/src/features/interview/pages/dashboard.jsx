@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react'
 import "../style/home.scss"
 import { useInterview } from '../hooks/useInterview.js'
 import { useNavigate } from 'react-router'
+import Navbar from '../../Auth/components/Navbar.jsx'
 
 const Dashboard = () => {
 
@@ -40,15 +41,15 @@ const Dashboard = () => {
         return (
             <main className='loading-screen'>
                 <div className='spinner'></div>
-                <h1>Analyzing your resume & generating interview plan...</h1>
-                <p>This usually takes around 20-30 seconds.</p>
+                <h1>Loading please wait...</h1>
+                <p>This usually takes around 5-10 seconds.</p>
             </main>
         )
     }
 
     return (
         <div className='home-page'>
-
+            <Navbar />
             {/* Page Header */}
             <header className='page-header'>
                 <h1>Create Your Custom <span className='highlight'>Interview Plan</span></h1>

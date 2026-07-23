@@ -2,6 +2,7 @@ import { useNavigate, Link } from 'react-router';
 import { useState } from 'react';
 import "../../Auth/form.scss";
 import { useAuth } from "../hooks/useAuth.js";
+import FullLoader from '../components/FullLoader.jsx';
 
 const Signup = () => {
     const navigate = useNavigate();
@@ -14,13 +15,9 @@ const Signup = () => {
         handleRegister({firstName:username,email,password});
         navigate("/");
     }
-    if(loading){
-        return (
-            <>
-            <main><h1>Loading......</h1></main>
-            </>
-        )
-    }
+    if (loading) {
+  return <FullLoader />;
+        }
 
     return (
         <>
