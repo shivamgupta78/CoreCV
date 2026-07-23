@@ -12,6 +12,11 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept']
 }));
 
+// Health Check Route (Isse browser mein "Cannot GET /" nahi aayega)
+app.get('/', (req, res) => {
+    res.status(200).send("CoreCV Backend is live and running! 🚀");
+});
+
 app.use(express.json());
 app.use(cookiesparser());
 
