@@ -104,18 +104,14 @@ async function generatedInterviewReport({ resume, selfDescription, jobDescriptio
 
 
 async function generatePdfFromHtml(htmlContent) {
-    if (!htmlContent) {
+   if (!htmlContent) {
         throw new Error("HTML content is missing for PDF generation!");
     }
+
     const isProduction = process.env.NODE_ENV === 'production' || process.env.RENDER;
-    const executablePath = isProduction 
-        ? (process.env.PUPPETEER_EXECUTABLE_PATH || '/usr/bin/google-chrome')
-        : "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
 
-
-    const browser = await puppeteer.launch({
+    const launchOptions = {
         headless: "new",
-       executablePath: executablePath,
         args: [
             '--no-sandbox',
             '--disable-setuid-sandbox',
@@ -125,7 +121,15 @@ async function generatePdfFromHtml(htmlContent) {
             '--no-zygote',
             '--single-process'
         ]
-    });
+    };
+
+    if (isProduction) {
+        launchOptions.executablePath = process.env.PUPPETEER_EXECUTABLE_PATH || puppeteer.executablePath();
+    } else {
+        launchOptions.executablePath = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
+    }
+
+    const browser = await puppeteer.launch(launchOptions);
     const page = await browser.newPage();
     const strictOnePageStyle = `
         <style>
