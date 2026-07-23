@@ -123,9 +123,7 @@ async function generatePdfFromHtml(htmlContent) {
         ]
     };
 
-    if (isProduction) {
-        launchOptions.executablePath = process.env.PUPPETEER_EXECUTABLE_PATH || puppeteer.executablePath();
-    } else {
+    if (!isProduction) {
         launchOptions.executablePath = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
     }
 
