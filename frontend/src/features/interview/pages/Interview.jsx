@@ -90,7 +90,6 @@ const Interview = () => {
         <>
         <Navbar />
         <div className='interview-page'>
-            <Navbar />
             <div className='interview-layout'>
 
                 {/* ── Left Nav ── */}
