@@ -80,7 +80,7 @@ export async function getProfile(){
     //     const response = await axiosClient.get('/auth/profile')
         return response.data;
     }catch(err){
-        throw new Error("getProfile mein error hai",err.message);
+        throw new Error(err.message);
     }
 }
 
