@@ -15,6 +15,8 @@ const Navbar = () => {
   return (
     <nav style={{
       display: 'flex',
+      width:'100%',
+      boxSizing:'border-box',
       justifyContent: 'space-between',
       alignItems: 'center',
       padding: '1rem 2rem',
