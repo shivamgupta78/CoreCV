@@ -110,8 +110,18 @@ async function generatePdfFromHtml(htmlContent) {
 
     const isProduction = process.env.NODE_ENV === 'production' || process.env.RENDER;
 
-    const launchOptions = {
+    let executablePath = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
+
+    if (isProduction) {
+        executablePath = process.env.PUPPETEER_EXECUTABLE_PATH || 
+                         '/usr/bin/google-chrome' || 
+                         '/usr/bin/chromium-browser' ||
+                         '/usr/bin/chromium';
+    }
+
+    const browser = await puppeteer.launch({
         headless: "new",
+        executablePath: executablePath,
         args: [
             '--no-sandbox',
             '--disable-setuid-sandbox',
@@ -121,13 +131,7 @@ async function generatePdfFromHtml(htmlContent) {
             '--no-zygote',
             '--single-process'
         ]
-    };
-
-    if (!isProduction) {
-        launchOptions.executablePath = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
-    }
-
-    const browser = await puppeteer.launch(launchOptions);
+    });
     const page = await browser.newPage();
     const strictOnePageStyle = `
         <style>
