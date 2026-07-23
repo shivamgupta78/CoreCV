@@ -107,10 +107,24 @@ async function generatePdfFromHtml(htmlContent) {
     if (!htmlContent) {
         throw new Error("HTML content is missing for PDF generation!");
     }
+    const isProduction = process.env.NODE_ENV === 'production' || process.env.RENDER;
+    const executablePath = isProduction 
+        ? (process.env.PUPPETEER_EXECUTABLE_PATH || '/usr/bin/google-chrome')
+        : "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
+
+
     const browser = await puppeteer.launch({
         headless: "new",
-        executablePath: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe", 
-        args: ['--no-sandbox', '--disable-setuid-sandbox']
+       executablePath: executablePath,
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage',
+            '--disable-gpu',
+            '--no-first-run',
+            '--no-zygote',
+            '--single-process'
+        ]
     });
     const page = await browser.newPage();
     const strictOnePageStyle = `
