@@ -87,6 +87,8 @@ const Interview = () => {
 
 
     return (
+        <>
+        <Navbar />
         <div className='interview-page'>
             <Navbar />
             <div className='interview-layout'>
@@ -193,6 +195,7 @@ const Interview = () => {
                 </aside>
             </div>
         </div>
+        </>
     )
 }
 

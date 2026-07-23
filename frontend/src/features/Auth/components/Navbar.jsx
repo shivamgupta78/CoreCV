@@ -51,6 +51,7 @@ const Navbar = () => {
             backgroundColor: 'rgba(255, 45, 120, 0.1)',
             color: '#ff2d78',
             border: '1px solid rgba(255, 45, 120, 0.3)',
+            position:'relative',
             borderRadius: '0.5rem',
             cursor: 'pointer',
             fontSize: '0.85rem',
