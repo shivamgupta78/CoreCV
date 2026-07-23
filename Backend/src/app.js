@@ -6,7 +6,7 @@ const interviewRouter = require('./routes/interview.js');
 const cors = require('cors');
 
 app.use(cors({
-    origin: "core-cv.vercel.app", 
+    origin: "https://core-cv.vercel.app", 
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept']
