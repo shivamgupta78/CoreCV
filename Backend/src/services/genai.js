@@ -104,34 +104,28 @@ async function generatedInterviewReport({ resume, selfDescription, jobDescriptio
 
 
 async function generatePdfFromHtml(htmlContent) {
-   if (!htmlContent) {
+  if (!htmlContent) {
         throw new Error("HTML content is missing for PDF generation!");
     }
 
     const isProduction = process.env.NODE_ENV === 'production' || process.env.RENDER;
 
-    let executablePath = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
+    let browser;
 
     if (isProduction) {
-        executablePath = process.env.PUPPETEER_EXECUTABLE_PATH || 
-                         '/usr/bin/google-chrome' || 
-                         '/usr/bin/chromium-browser' ||
-                         '/usr/bin/chromium';
+        browser = await puppeteer.launch({
+            args: chromium.args,
+            defaultViewport: chromium.defaultViewport,
+            executablePath: await chromium.executablePath(),
+            headless: chromium.headless,
+        });
+    } else {
+        browser = await puppeteer.launch({
+            headless: "new",
+            executablePath: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+            args: ['--no-sandbox', '--disable-setuid-sandbox']
+        });
     }
-
-    const browser = await puppeteer.launch({
-        headless: "new",
-        executablePath: executablePath,
-        args: [
-            '--no-sandbox',
-            '--disable-setuid-sandbox',
-            '--disable-dev-shm-usage',
-            '--disable-gpu',
-            '--no-first-run',
-            '--no-zygote',
-            '--single-process'
-        ]
-    });
     const page = await browser.newPage();
     const strictOnePageStyle = `
         <style>
