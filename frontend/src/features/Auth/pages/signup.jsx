@@ -40,6 +40,9 @@ const Signup = () => {
                     <div className="input-group">
                     <label htmlFor="password">Password</label>
                     <input onChange={(e)=> {setPassword(e.target.value)}} type="password" id="password" placeholder="Password" />
+                    <p style={{ fontSize: '0.8rem', color: '#666', marginTop: '5px', lineHeight: '1.4' }}>
+                            Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one symbol.
+                        </p>
                     </div>
                     <button  className="button primary-button"type="submit" >Register</button>
                 </form>
