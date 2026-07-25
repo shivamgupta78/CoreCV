@@ -41,7 +41,7 @@ const Signup = () => {
                     <label htmlFor="password">Password</label>
                     <input onChange={(e)=> {setPassword(e.target.value)}} type="password" id="password" placeholder="Password" />
                     </div>
-                    <button  className="button primary-button"type="submit" onSubmit={handleSubmit}>Register</button>
+                    <button  className="button primary-button"type="submit" >Register</button>
                 </form>
 
                 <p>Already have an account? <Link to="/login">Login</Link></p>
