@@ -482,44 +482,52 @@ $font-stack:     system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Robot
     100% { transform: rotate(360deg); }
 }
 
-// ── Mobile Responsiveness (Styled Exactly like interview-nav) ─────────────────
 @media (max-width: 992px) {
   .home-page {
     padding: 0.75rem;
     gap: 1.25rem;
   }
 
-  /* ── Mobile Navbar Styling matching interview-nav ── */
+  /* ── Mobile Navbar with Equal Gap Distribution ── */
   .nav-container, .navbar, .header-content {
     width: 100%;
     padding: 0.75rem;
+    display: flex;
     flex-direction: row;
-    overflow-x: auto;
-    white-space: nowrap;
-    border-bottom: 1px solid $border-color;
-    justify-content: space-between;
     align-items: center;
-    gap: 0.75rem;
+    justify-content: space-between; // Screen width ke hisaab se space distribute karega
+    gap: 0.5rem;
+    border-bottom: 1px solid $border-color;
 
+    /* 1. CoreCV Logo */
     .logo, .brand-logo {
-      font-size: 0.9rem;
+      font-size: 0.875rem;
+      font-weight: 700;
+      white-space: nowrap;
       flex-shrink: 0;
     }
 
+    /* 2. User Profile Wrapper */
     .user-profile-section, .nav-actions {
-      flex-direction: row;
-      gap: 0.6rem;
-      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between; // Inner elements ko faila kar equal balance karega
+      width: 100%; // Poori available space use karega
+      gap: 0.75rem;
 
       .user-name {
         font-size: 0.8rem;
+        color: $text-muted;
         white-space: nowrap;
+        text-align: center;
+        flex: 1; // Center element ko occupy kar ke equal space dega
       }
 
       .logout-btn {
         padding: 0.35rem 0.65rem;
         font-size: 0.75rem;
         white-space: nowrap;
+        flex-shrink: 0;
       }
     }
   }
