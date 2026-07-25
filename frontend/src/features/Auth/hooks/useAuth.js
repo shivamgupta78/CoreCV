@@ -34,7 +34,7 @@ export const useAuth = () => {
             if(response && response.token){
                 localStorage.setItem('token',response.token);
             }
-            setuser(response.data)
+         setuser(response?.user || response);
         } catch (error) {
             throw new Error("Error registering:" + error.message);
         } finally{
