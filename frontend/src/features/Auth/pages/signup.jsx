@@ -11,9 +11,13 @@ const Signup = () => {
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
      const handleSubmit = (e) => {
-        e.preventDefault();
-        handleRegister({firstName:username,email,password});
-        navigate("/");
+       e.preventDefault();
+        try { 
+            await handleRegister({email,password});
+            navigate("/dashbaord");
+        } catch(err){
+            console.error(err);
+        }
     }
     if (loading) {
   return <FullLoader />;
