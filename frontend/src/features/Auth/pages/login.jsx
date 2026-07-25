@@ -16,7 +16,7 @@ const Login = () => {
         e.preventDefault();
         try { 
             await handleLogin({email,password});
-            navigate("/dashbaord");
+            navigate("/dashboard");
         } catch(err){
             console.error(err);
         }

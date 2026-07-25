@@ -31,6 +31,9 @@ export const useAuth = () => {
         setloading(true)
         try {
             const response = await register({firstName,email,password})
+            if(response && response.token){
+                localStorage.setItem('token',response.token);
+            }
             setuser(response.data)
         } catch (error) {
             throw new Error("Error registering:" + error.message);

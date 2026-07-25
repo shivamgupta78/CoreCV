@@ -14,7 +14,7 @@ const Signup = () => {
        e.preventDefault();
         try { 
             await handleRegister({firstName,email,password});
-            navigate("/dashbaord");
+            navigate("/dashboard");
         } catch(err){
             console.error(err);
         }
