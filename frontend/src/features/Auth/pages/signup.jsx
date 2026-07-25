@@ -10,7 +10,7 @@ const Signup = () => {
     const [firstName,setfirstName] = useState("");
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
-     const handleSubmit = (e) => {
+     const handleSubmit = async (e) => {
        e.preventDefault();
         try { 
             await handleRegister({firstName,email,password});
