@@ -7,13 +7,13 @@ import FullLoader from '../components/FullLoader.jsx';
 const Signup = () => {
     const navigate = useNavigate();
     const { loading, handleRegister } = useAuth();
-    const [username,setUsername] = useState("");
+    const [firstName,setfirstName] = useState("");
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
      const handleSubmit = (e) => {
        e.preventDefault();
         try { 
-            await handleRegister({username,email,password});
+            await handleRegister({firstName,email,password});
             navigate("/dashbaord");
         } catch(err){
             console.error(err);
@@ -30,8 +30,8 @@ const Signup = () => {
                 <h1>Register</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="input-group"> 
-                    <label htmlFor="username">Username</label>
-                    <input onChange={(e)=> {setUsername(e.target.value)}} type="text" id="username" placeholder="Username" />
+                    <label htmlFor="firstName">Username</label>
+                    <input onChange={(e)=> {setfirstName(e.target.value)}} type="text" id="username" placeholder="Username" />
                     </div>
                     <div className="input-group">
                     <label htmlFor="email">Email</label>
