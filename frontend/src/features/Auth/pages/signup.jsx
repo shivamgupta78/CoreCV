@@ -13,7 +13,7 @@ const Signup = () => {
      const handleSubmit = (e) => {
        e.preventDefault();
         try { 
-            await handleRegister({email,password});
+            await handleRegister({username,email,password});
             navigate("/dashbaord");
         } catch(err){
             console.error(err);
